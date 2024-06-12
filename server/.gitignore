@@ -11,4 +11,5 @@ obj/
 /wwwroot/node_modules
 
 /.idea/*
+/.idea/.idea.EpicDuelsApi/.idea
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
