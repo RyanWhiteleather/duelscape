@@ -17,7 +17,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://*.whty383.com"));
+app.UseCors(x => 
+    x.AllowAnyHeader()
+        .AllowAnyMethod().
+        WithOrigins("https://*.whty383.com")
+        .SetIsOriginAllowedToAllowWildcardSubdomains());
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
