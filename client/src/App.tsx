@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
-
 export default function HomePage() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('/api/WeatherForecast')
+        fetch(`${process.env.APP_BASE_URL}/WeatherForecast`)
             .then(response => response.json())
             .then(data => setData(data))
             .catch(error => console.error('Error:', error));
