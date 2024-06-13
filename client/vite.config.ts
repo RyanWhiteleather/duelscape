@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: process.env.API_URL,
+          target: 'https://epic-duels-api-lirlkgncfq-uc.a.run.app/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
