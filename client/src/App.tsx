@@ -4,7 +4,7 @@ export default function HomePage() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('/api/WeatherForecast')
+        fetch('https://epic-duels-api-lirlkgncfq-uc.a.run.app/WeatherForecast')
             .then(response => response.json())
             .then(data => setData(data))
             .catch(error => console.error('Error:', error));
