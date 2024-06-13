@@ -7,10 +7,12 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["EpicDuelsApi/EpicDuelsApi.csproj", "EpicDuelsApi/"]
+COPY ["EpicDuelsApi.csproj", "EpicDuelsApi/"]
 RUN dotnet restore "EpicDuelsApi/EpicDuelsApi.csproj"
-COPY . .
+
 WORKDIR "/src/EpicDuelsApi"
+COPY . .
+
 RUN dotnet build "EpicDuelsApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
