@@ -13,18 +13,9 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'https://epic-duels-api-lirlkgncfq-uc.a.run.app/',
+          target: process.env.API_URL,
           changeOrigin: true,
-          rewrite: (path) => {
-            const newPath = path.replace(/^\/api/, '');
-            console.log(`Rewriting ${path} to ${newPath}`);
-            return newPath;
-          },
-          configure: (proxy) => {
-            proxy.on('proxyReq', (proxyReq, req, res) => {
-              console.log(`Proxying request to: ${proxyReq.path}`);
-            });
-          }
+          rewrite: (path) => path.replace(/^\/api/, '')
         }
       },
       port: parseInt(port)
