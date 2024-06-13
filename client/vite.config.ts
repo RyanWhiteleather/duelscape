@@ -10,6 +10,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    build: {
+      outDir: 'build',
+      assetsDir: 'assets',
+      emptyOutDir: true,
+    },
     server: {
       proxy: {
         '/api': {
