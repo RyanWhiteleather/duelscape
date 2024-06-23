@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EpicDuelsApi.Controllers;
+namespace Server.Controllers;
 
 [ApiController]
 [Route("[controller]")]

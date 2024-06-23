@@ -1,4 +1,5 @@
-namespace EpicDuelsApi;
+namespace Server;
+
 
 public class WeatherForecast
 {
