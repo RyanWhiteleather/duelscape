@@ -1,4 +1,5 @@
 import { MenuButton } from './MenuButton.tsx';
+import { Footer } from './Footer.tsx';
 
 export const MainMenu = () => {
     /**
@@ -11,7 +12,7 @@ export const MainMenu = () => {
     };
 
     /**
-     * TODO: Placeholder for Creat game logic.
+     * TODO: Placeholder for Create game logic.
      *   This should generate a code, take them to the Lobby where other players can join.
      * @constructor
      */
@@ -19,12 +20,26 @@ export const MainMenu = () => {
         console.log('Create Game');
     };
 
+    /**
+     * TODO: Placeholder for View Characters logic.
+     *   This should go to a screen that has all available characters and their decks.
+     * @constructor
+     */
+    const OnViewCharacters = () => {
+        console.log('View Characters');
+    };
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-r from-[#000000] via-[#003366] to-[#5d0000] text-white">
-            <div className="container flex-col items-center justify-center gap-8 px-4 py-16 border-2 border-gray-300 p-6 rounded-lg flex space-x-4 w-96 mx-auto">
+            <div className="relative container flex-col items-center justify-center gap-8 px-4 py-16  p-6 rounded-lg flex space-x-4 w-96 mx-auto">
+                <Footer />
                 <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[4rem]">Epic Duels</h1>
-                <MenuButton onClick={() => OnCreateGame()}>Create Game</MenuButton>
-                <MenuButton onClick={() => OnJoinGame()}>Join Game</MenuButton>
+                <div className="flex space-x-4 ">
+                    <MenuButton onClick={() => OnCreateGame()}>Create Game</MenuButton>
+                    <MenuButton onClick={() => OnJoinGame()}>Join Game</MenuButton>
+                </div>
+
+                <MenuButton onClick={() => OnViewCharacters()}>View Characters</MenuButton>
             </div>
         </main>
     );
