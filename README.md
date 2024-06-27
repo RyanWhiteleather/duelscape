@@ -1,7 +1,6 @@
-# Epic Duels
+# DuelScape
 
-# Deployment
-API is currently running on a Digital Ocean droplet.  GitHub actions build and push and image to docker hub.  Currently I have to manually update the image on the server.  React fronend is runningon CloudFlare pages.
+A fan made version of the Star Wars: Epic Duels board game.
 
 ## TODO
 
