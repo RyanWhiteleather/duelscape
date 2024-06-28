@@ -10,14 +10,14 @@
 name: Publish Docker image
 
 #TODO: Change this to be release at some point
-on:
-  release:
-    types: [published]
 # on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
+#   release:
+#     types: [published]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   push_to_registry:
@@ -42,7 +42,7 @@ jobs:
       #   id: meta
       #   uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
       #   with:
-      #     images: ${{ secrets.DOCKER_USERNAME }}/epic-duels-api
+      #     images: ${{ secrets.DOCKER_USERNAME }}/duelscape-api
 
       - name: Build and push Docker image
         id: push
@@ -51,7 +51,7 @@ jobs:
           context: ./server/Server
           file: ./server/Server/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/epic-duels-api:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/duelscape-api:latest
       
       
       # - name: Generate artifact attestation
