@@ -4,7 +4,7 @@ export const Footer = () => {
     return (
         <>
             <a
-                href="https://github.com/RyanWhiteleather/epic-duels"
+                href="https://github.com/RyanWhiteleather/duelscape"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute bottom-4 left-4"
