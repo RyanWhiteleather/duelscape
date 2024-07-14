@@ -1,7 +1,9 @@
 import { MenuButton } from './MenuButton.tsx';
 import { Footer } from './Footer.tsx';
+import { useNavigate } from 'react-router-dom';
 
 export const MainMenu = () => {
+    const navigate = useNavigate();
     /**
      * TODO: Placeholder for Join Game Logic.
      *   This should show a screen where the player can enter in a game code to join a create game
@@ -15,7 +17,7 @@ export const MainMenu = () => {
      *   This should generate a code, take them to the Lobby where other players can join.
      */
     const OnCreateGame = () => {
-        console.log('Create Game');
+        navigate('/lobby');
     };
 
     /**
@@ -27,17 +29,15 @@ export const MainMenu = () => {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-r from-[#000000] via-[#003366] to-[#5d0000] text-white">
-            <div className="relative container flex-col items-center justify-center gap-8 px-4 py-16  p-6 rounded-lg flex space-x-4 w-96 mx-auto">
-                <Footer />
-                <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[4rem]">DuelScape</h1>
-                <div className="flex space-x-4 ">
-                    <MenuButton onClick={() => OnCreateGame()}>Create Game</MenuButton>
-                    <MenuButton onClick={() => OnJoinGame()}>Join Game</MenuButton>
-                </div>
-
-                <MenuButton onClick={() => OnViewCharacters()}>View Characters</MenuButton>
+        <div className="relative container flex-col items-center justify-center gap-8 px-4 py-16  p-6 flex space-x-4 w-96 mx-auto bg-[#2e2e2e] rounded-[12px]">
+            <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[4rem]">DuelScape</h1>
+            <div className="flex space-x-4 ">
+                <MenuButton onClick={() => OnCreateGame()}>Create Game</MenuButton>
+                <MenuButton onClick={() => OnJoinGame()}>Join Game</MenuButton>
             </div>
-        </main>
+
+            <MenuButton onClick={() => OnViewCharacters()}>View Characters</MenuButton>
+            <Footer />
+        </div>
     );
 };
