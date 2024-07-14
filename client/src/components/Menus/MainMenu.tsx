@@ -29,7 +29,7 @@ export const MainMenu = () => {
     };
 
     return (
-        <div className="relative container flex-col items-center justify-center gap-8 px-4 py-16  p-6 flex space-x-4 w-96 mx-auto bg-[#2e2e2e] rounded-[12px]">
+        <div className="relative bg-opacity-50 container flex-col items-center justify-center gap-8 px-4 py-16  p-6 flex space-x-4 w-96 mx-auto bg-[#2e2e2e] rounded-[12px]">
             <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[4rem]">DuelScape</h1>
             <div className="flex space-x-4 ">
                 <MenuButton onClick={() => OnCreateGame()}>Create Game</MenuButton>
