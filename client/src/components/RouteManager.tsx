@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { MainMenu } from './Menus/MainMenu';
-import { Lobby } from './Menus/Lobby.tsx';
+import { Lobby } from './Menus/Lobby/Lobby.tsx';
 
 export const RouteManager = () => {
     return (
