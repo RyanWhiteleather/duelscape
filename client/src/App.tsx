@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { RouteManager } from './components/Menus/RouteManager.tsx';
+import { RouteManager } from './components/RouteManager.tsx';
 
 export default function App() {
     return (

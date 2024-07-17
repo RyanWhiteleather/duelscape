@@ -1,4 +1,4 @@
-import { MenuButton } from './MenuButton.tsx';
+import { MenuButton } from '../Shared/MenuButton.tsx';
 import { Footer } from './Footer.tsx';
 import { useNavigate } from 'react-router-dom';
 
