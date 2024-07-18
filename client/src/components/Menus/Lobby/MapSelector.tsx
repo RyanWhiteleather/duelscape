@@ -13,7 +13,7 @@ export const MapSelector = () => {
             <select
                 value={selectedMap}
                 onChange={handleChange}
-                className="h-10 rounded bg-gray-700 text-white p-2 text-xl text-center"
+                className="h-12 rounded bg-gray-700 text-white p-2 text-xl text-center"
             >
                 <option value="Kamino Platform">Kamino Platform</option>
                 <option value="Geonosis Arena">Geonosis Arena</option>
