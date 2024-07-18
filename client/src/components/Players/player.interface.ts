@@ -4,5 +4,5 @@
 export interface Player {
     avatar: string;
     name: string;
-    team: string;
+    team: number;
 }

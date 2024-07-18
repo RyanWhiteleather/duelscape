@@ -8,9 +8,11 @@ interface LobbyPlayersProps {
 export const LobbyPlayers = ({ players }: LobbyPlayersProps) => {
     return (
         <div className="p-4">
-            {players.map((player, index) => (
-                <PlayerCard key={index} player={player} />
-            ))}
+            {players
+                .sort((a, b) => a.team - b.team)
+                .map((player, index) => (
+                    <PlayerCard key={index} player={player} />
+                ))}
         </div>
     );
 };
