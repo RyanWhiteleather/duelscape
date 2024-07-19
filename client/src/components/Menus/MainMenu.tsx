@@ -1,6 +1,9 @@
+import { generateGameCode } from '../../lib/utils.ts';
 import { MenuButton } from '../Shared/MenuButton.tsx';
 import { Footer } from './Footer.tsx';
 import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Room } from './Room.tsx';
 
 export const MainMenu = () => {
     const navigate = useNavigate();
@@ -13,11 +16,14 @@ export const MainMenu = () => {
     };
 
     /**
-     * TODO: Placeholder for Create game logic.
-     *   This should generate a code, take them to the Lobby where other players can join.
+     * Generates a random gamecode to be used as the roomId.
+     * Naviagtes to the Room to setup the SignalR connection.
+     * 
+     * {@link Room}
      */
     const OnCreateGame = () => {
-        navigate('/lobby');
+        const roomId = generateGameCode();
+        navigate(`/${roomId}`);
     };
 
     /**

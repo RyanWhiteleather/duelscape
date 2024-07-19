@@ -5,10 +5,10 @@ export const LobbyGameSettings = () => {
      * Copies the input field onClick
      * @param event
      */
-    const handleCopy = (event) => {
-        navigator.clipboard.writeText(event.target.value).then(() => {
+    const handleCopy = (event: React.MouseEvent<HTMLInputElement>) => {
+        navigator.clipboard.writeText(event.currentTarget.value).then(() => {
             // Optional: Provide feedback to the user that the text has been copied
-            alert('Copied to clipboard: ' + event.target.value);
+            alert('Copied to clipboard: ' + event.currentTarget.value);
         });
     };
     return (

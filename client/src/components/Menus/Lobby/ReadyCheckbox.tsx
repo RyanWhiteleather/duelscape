@@ -1,4 +1,9 @@
-export const ReadyCheckbox = ({ isChecked, onChange }) => {
+interface ReadyCheckboxProps {
+    isChecked: boolean;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const ReadyCheckbox = ({ isChecked, onChange }: ReadyCheckboxProps) => {
     return (
         <div className="flex items-center space-x-2">
             <input

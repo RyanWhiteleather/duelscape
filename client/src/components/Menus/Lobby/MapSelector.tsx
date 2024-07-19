@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const MapSelector = () => {
     const [selectedMap, setSelectedMap] = useState('Kamino Platform');
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedMap(event.target.value);
     };
 
