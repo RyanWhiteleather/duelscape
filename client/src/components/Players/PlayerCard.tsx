@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Player } from './player.interface';
+import { Player } from '../../interfaces/player.interface';
 import { ReadyCheckbox } from '../Menus/Lobby/ReadyCheckbox';
 import { CharacterSelector } from '../Characters/CharacterSelector';
 

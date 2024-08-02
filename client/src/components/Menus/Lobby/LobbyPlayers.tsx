@@ -1,4 +1,4 @@
-import { Player } from '../../Players/player.interface';
+import { Player } from '../../../interfaces/player.interface';
 import { PlayerCard } from '../../Players/PlayerCard';
 
 interface LobbyPlayersProps {
