@@ -3,10 +3,11 @@ import { MenuButton } from '../Shared/MenuButton.tsx';
 import { Footer } from './Footer.tsx';
 import { useNavigate } from 'react-router-dom';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Room } from './Room.tsx';
+ import { Room } from './Room.tsx';
 
 export const MainMenu = () => {
     const navigate = useNavigate();
+
     /**
      * TODO: Placeholder for Join Game Logic.
      *   This should show a screen where the player can enter in a game code to join a create game
@@ -18,7 +19,7 @@ export const MainMenu = () => {
     /**
      * Generates a random gamecode to be used as the roomId.
      * Naviagtes to the Room to setup the SignalR connection.
-     * 
+     *
      * {@link Room}
      */
     const OnCreateGame = () => {
@@ -32,6 +33,8 @@ export const MainMenu = () => {
      */
     const OnViewCharacters = () => {
         console.log('View Characters');
+
+        //console.log(response.text());
     };
 
     return (

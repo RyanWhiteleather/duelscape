@@ -1,7 +1,12 @@
 import { useState } from 'react';
-import { Player } from './player.interface';
+import { Player } from '../../interfaces/player.interface';
 import { ReadyCheckbox } from '../Menus/Lobby/ReadyCheckbox';
 import { CharacterSelector } from '../Characters/CharacterSelector';
+
+import ObiWan from '../../assets/character-avatars/Obi-Wan.png';
+import MaceWindu from '../../assets/character-avatars/Mace-Windu.png';
+import Vader from '../../assets/character-avatars/Vader.png';
+import Emporer from '../../assets/character-avatars/Emperor.png';
 
 interface PlayerCardProps {
     player: Player;
@@ -29,6 +34,7 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
      * @returns
      */
     const getTeamName = (team: number): string => {
+        console.log(team);
         switch (team) {
             case 1:
                 return 'Team 1';
@@ -39,11 +45,21 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
         }
     };
 
+    const getCharacterAvatar = (character: string): string => {
+        console.log(character);
+        switch (character) {
+            case 'ObiWan':
+                return ObiWan;
+            default:
+                return '';
+        }
+    };
+
     return (
         <div className="flex items-center p-2 bg-gray-800 rounded-lg shadow-md mb-2">
             {/* TODO: Get avatar for selected character, link to character selector menu */}
             <img
-                src={player.avatar}
+                src={getCharacterAvatar(player.character)}
                 alt="avatar"
                 className=" h-20 rounded-full mr-4 cursor-pointer"
                 onClick={openCharacterSelectorModal}
@@ -54,7 +70,7 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
             {/* TODO: Allow team selector and adjust color based on team number */}
             <input
                 type="text"
-                value={getTeamName(player.team)}
+                value={getTeamName(player.teamNumber)}
                 className="w-32 h-8 rounded bg-gray-700 text-white p-2 text-xl text-center"
                 readOnly
             />

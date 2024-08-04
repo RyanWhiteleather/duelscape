@@ -15,11 +15,11 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    // "strict": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/interfaces/game-state.interface.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

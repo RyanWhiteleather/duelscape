@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Server.Auth;
+using Server.Database;
+using Server.Extensions;
 using Server.Hubs;
+using Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +15,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddSignalR();
+builder.Services
+    .AddAuthentication("Basic")
+    .AddScheme<BasicAuthenticationOptions, BasicAuthenticationHandler>("Basic", null);
 
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
+builder.Services.AddSingleton<IGameService, GameService>();
+builder.Services.AddSingleton<IGameUpdateHandler, GameUpdateHandler>();
 
 var app = builder.Build();
 
@@ -19,17 +30,17 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigrations();
 
 }
 
-app.UseCors(x => 
+app.UseCors(x =>
     x.AllowAnyHeader()
-        .AllowAnyMethod().
-        WithOrigins("https://*.whty383.com")
-        .SetIsOriginAllowedToAllowWildcardSubdomains());
+        .AllowAnyMethod().AllowAnyOrigin());
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
