@@ -2,7 +2,10 @@
  * Stores information about the player
  */
 export interface Player {
-    avatar: string;
-    name: string;
-    team: number;
+    playerId: string
+    name: string
+    character: string;
+    teamNumber: number;
+    playerIndex: number;
+    perstistnacePlayerId: string
 }

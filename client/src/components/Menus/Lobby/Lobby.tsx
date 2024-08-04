@@ -3,12 +3,12 @@ import { MenuHeader } from '../MenuHeader.tsx';
 import { LobbyGameSettings } from './LobbyGameSettings.tsx';
 import { LobbyPlayers } from './LobbyPlayers.tsx';
 
-import ObiWan from '../../../assets/character-avatars/Obi-Wan.png';
-import MaceWindu from '../../../assets/character-avatars/Mace-Windu.png';
-import Vader from '../../../assets/character-avatars/Vader.png';
-import Emporer from '../../../assets/character-avatars/Emperor.png';
 import { MenuButton } from '../../Shared/MenuButton.tsx';
 import { useRoomId } from '../../../hooks/useRoomId.ts';
+import { HubConnection } from '@microsoft/signalr';
+import { GameState } from '../../../interfaces/game-state.interface.ts';
+import { useEffect, useState } from 'react';
+import { LobbyData } from '../../../interfaces/lobby-data.interface.ts';
 
 /**
  * Lobby where players will:
@@ -18,17 +18,42 @@ import { useRoomId } from '../../../hooks/useRoomId.ts';
  *  Start the game
  *
  */
-export const Lobby = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [roomId] = useRoomId();
-
+interface LobbyProps {
+    roomId: string;
+    connection: HubConnection | undefined;
+    playerId: string;
+    gameState: GameState | undefined;
+    onBack: () => void;
+    connectionError: string | undefined;
+}
+export const Lobby = ({ roomId, connection, playerId, gameState, onBack, connectionError }: LobbyProps) => {
     // TODO: Fetch players dynamically
-    const players: Player[] = [
-        { avatar: ObiWan, name: 'Ryan', team: 1 },
-        { avatar: MaceWindu, name: 'Justin', team: 1 },
-        { avatar: Vader, name: 'Nathan', team: 2 },
-        { avatar: Emporer, name: 'Adam', team: 2 },
-    ];
+    // const players: Player[] = [
+    //     { avatar: ObiWan, name: 'Ryan', team: 1 },
+    //     { avatar: MaceWindu, name: 'Justin', team: 1 },
+    //     { avatar: Vader, name: 'Nathan', team: 2 },
+    //     { avatar: Emporer, name: 'Adam', team: 2 },
+    // ];
+
+    const [lobbyData, setLobbyData] = useState<LobbyData>();
+    const [inLobby, setInLobby] = useState<boolean>(false);
+
+    const updateLobbyData = (updatedLobby: LobbyData) => {
+        console.log(updatedLobby);
+        setLobbyData(updatedLobby);
+        setInLobby(updatedLobby !== null);
+    };
+
+    useEffect(() => {
+        if (!connection) {
+            return;
+        }
+        connection.on('UpdateLobbyState', updateLobbyData);
+
+        return () => {
+            connection.off('UpdateLobbyState', updateLobbyData);
+        };
+    });
 
     return (
         <div className="relative bg-[#2e2e2e] bg-opacity-50  rounded-[12px] text-whitesmoke h-[1000px] max-w-[1200px] shadow-[0px_40px_200px_rgba(0,0,0,0.56)] w-[calc(100%_-_140px)] p-[10px_50px_50px_50px] sm:w-[calc(100%_-_70px)] sm:p-[10px_20px_30px_20px]">
@@ -40,9 +65,7 @@ export const Lobby = () => {
 
                 <div className="h-[900px] min-h-[1em] w-1 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"></div>
 
-                <div className="flex-1 ps-5">
-                    <LobbyPlayers players={players} />
-                </div>
+                <div className="flex-1 ps-5">{lobbyData && <LobbyPlayers players={lobbyData.gamePlayers} />}</div>
             </div>
 
             <div className="absolute bottom-0 right-0 flex space-x-4 pb-4 pr-4 ">

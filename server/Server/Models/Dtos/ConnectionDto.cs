@@ -9,11 +9,15 @@ namespace Server.Models.Dtos
     {
         public string PlayerId { get; set; }
         public string Name { get; set; }
+        public string Character { get; set; }
+        public int TeamNumber { get; set; }
 
-        public ConnectionDto(GameParticipant gameParticipant)
+        public ConnectionDto(GamePlayers gamePlayers)
         {
-            PlayerId = gameParticipant.PersistentPlayerId.ToString().Hash();
-            Name = gameParticipant.Name;
+            PlayerId = gamePlayers.PersistentPlayerId.ToString().Hash();
+            Name = gamePlayers.Name;
+            Character = gamePlayers.Character;
+            TeamNumber = gamePlayers.TeamNumber;
         }
     }
 }

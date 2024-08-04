@@ -5,7 +5,7 @@
     /// </summary>
     public class Room
     {
-        public List<GameParticipant> Connections { get; set; } = new();
+        public List<GamePlayers> Connections { get; set; } = new();
         public string RoomId { get; set; }
         
         public bool GameStarted { get; set; }

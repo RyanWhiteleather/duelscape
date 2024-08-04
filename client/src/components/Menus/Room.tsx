@@ -112,7 +112,14 @@ export const Room = () => {
         <>
             {!!gameState && <div>Game</div>}
 
-            <Lobby></Lobby>
+            <Lobby
+                roomId={roomId}
+                connection={connection}
+                playerId={persistentId}
+                gameState={gameState}
+                onBack={() => connection?.stop}
+                connectionError={connectionError}
+            ></Lobby>
         </>
     );
 };

@@ -43,10 +43,12 @@ namespace Server.Services
                 var gameResultContext = scope.ServiceProvider.GetRequiredService<DataContext>();
                 var playerDao = await gameResultContext.Players.FindAsync(persistentPlayerId);
                 room.Connections.Add(
-                    new GameParticipant
+                    new GamePlayers
                     {
                         Name = playerDao?.Name ?? "Player" + (room.Connections.Count + 1),
                         PersistentPlayerId = persistentPlayerId,
+                        Character = "ObiWan",
+                        TeamNumber = 1
                     }
                 );
             }
@@ -77,7 +79,8 @@ namespace Server.Services
         /// <returns></returns>
         private LobbyStateDto GetLobbyStateDto(Room room)
         {
-            return new LobbyStateDto(room.Connections.ToList(), room.GameStarted );
+            var lobbyStatDto = new LobbyStateDto(room.Connections.ToList(), room.GameStarted);
+            return lobbyStatDto;
         }
     }
 }
