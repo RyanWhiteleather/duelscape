@@ -45,7 +45,7 @@ namespace Server.Services
                 room.Connections.Add(
                     new GameParticipant
                     {
-                        Name = playerDao?.Name ?? "Player",
+                        Name = playerDao?.Name ?? "Player" + (room.Connections.Count + 1),
                         PersistentPlayerId = persistentPlayerId,
                     }
                 );

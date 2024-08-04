@@ -3,11 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Database
 {
-    public class DataContext : DbContext
+    public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
     {
         public DbSet<PlayerDao> Players { get; set; }
-
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
     }
 
     [Table("Player")]

@@ -11,6 +11,7 @@ import {
     LogLevel,
 } from '@microsoft/signalr';
 import { GameState } from '../../interfaces/game-state.interface';
+import { Lobby } from './Lobby/Lobby';
 
 /**
  * Base Component for the Lobby and the Game.
@@ -19,7 +20,6 @@ import { GameState } from '../../interfaces/game-state.interface';
  */
 export const Room = () => {
     const [persistentId] = useState<string>(() => localStorage.getItem('persistentId') ?? uuid());
-
     const [roomId, roomIdRef] = useRoomId();
     const [connection, setConnection, connectionRef] = useStateRef<HubConnection>();
     const [connectionError, setConnectionError] = useState<string>();
@@ -27,15 +27,13 @@ export const Room = () => {
 
     useEffect(() => {
         if (roomId && persistentId) {
-            // if (connectionRef.current?.state === HubConnectionState.Connected) {
-            //     connectionRef.current?.stop();
-            // }
+            if (connectionRef.current?.state === HubConnectionState.Connected) {
+                connectionRef.current?.stop();
+            }
             CreateConnection();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId, persistentId, connectionRef]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     /**
      * Creates the SignalR connection to the backend.
      */
@@ -101,13 +99,20 @@ export const Room = () => {
         }
     };
 
+    /**
+     * Update the game state from the websocket connection.
+     * @param updatedGameState
+     */
     const UpdateGameState = (updatedGameState: GameState) => {
         setGameState({ ...updatedGameState });
+        console.log(gameState);
     };
+
     return (
         <>
-            <div>Game</div>
-            <div>Lobby</div>
+            {!!gameState && <div>Game</div>}
+
+            <Lobby></Lobby>
         </>
     );
 };

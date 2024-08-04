@@ -3,7 +3,7 @@ export interface IConfig {
 }
 
 const dev = {
-    api: `https://${window.location.hostname}:44372`
+    api: `https://${window.location.hostname}:5001`
 }
 
 const prod = {

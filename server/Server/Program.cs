@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Server.Auth;
+using Server.Database;
+using Server.Extensions;
 using Server.Hubs;
 using Server.Services;
 
@@ -15,6 +18,8 @@ builder.Services.AddSignalR();
 builder.Services
     .AddAuthentication("Basic")
     .AddScheme<BasicAuthenticationOptions, BasicAuthenticationHandler>("Basic", null);
+
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddSingleton<IGameService, GameService>();
 builder.Services.AddSingleton<IGameUpdateHandler, GameUpdateHandler>();
 
@@ -25,6 +30,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigrations();
 
 }
 
