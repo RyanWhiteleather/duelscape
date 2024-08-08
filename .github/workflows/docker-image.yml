@@ -9,15 +9,15 @@
 
 name: Publish Docker image
 
-#TODO: Change this to be release at some point
-# on:
-#   release:
-#     types: [published]
+
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  release:
+    types: [published]
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
 jobs:
   push_to_registry:
