@@ -1,0 +1,8 @@
+<div class="relative bg-opacity-50 container flex-col items-center justify-center gap-8 px-4 py-16 p-6 flex space-x-4 w-96 mx-auto bg-[#2e2e2e] rounded-[12px]">
+  <h1 class="text-6xl font-extrabold tracking-tight text-white ">DuelScape</h1>
+  <div class="flex space-x-4">
+      <app-menu-button (buttonClick)="onCreateGame()">Create Game</app-menu-button>
+      <app-menu-button (buttonClick)="onJoinGame()">Join Game</app-menu-button>
+  </div>
+  <app-menu-button (buttonClick)="onViewCharacters()">View Characters</app-menu-button>
+</div>

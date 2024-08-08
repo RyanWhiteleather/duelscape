@@ -1,0 +1,23 @@
+<div
+    class="relative bg-[#2e2e2e] bg-opacity-50 rounded-[12px] text-whitesmoke h-[1000px] max-w-[1200px] shadow-[0px_40px_200px_rgba(0,0,0,0.56)] w-[calc(100%_-_140px)] p-[10px_50px_50px_50px] sm:w-[calc(100%_-_70px)] sm:p-[10px_20px_30px_20px]"
+>
+    <app-menu-header>Lobby</app-menu-header>
+    <div class="relative flex mt-20">
+        <div class="flex-none w-1/3">
+            <app-lobby-game-settings [roomId]="roomId"></app-lobby-game-settings>
+        </div>
+
+        <div
+            class="h-[900px] min-h-[1em] w-1 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+        ></div>
+
+        <div class="flex-1 ps-5">
+            <app-lobby-players *ngIf="lobbyData" [players]="lobbyData.gamePlayers"></app-lobby-players>
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 right-0 flex space-x-4 pb-4 pr-4">
+        <app-menu-button (click)="startGame()">Start Game</app-menu-button>
+        <app-menu-button (click)="quitGame()">Quit</app-menu-button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="p-4">
+    <div *ngFor="let player of sortedPlayers" class="flex items-center p-2 bg-gray-800 rounded-lg shadow-md mb-2">
+        <img [src]="getCharacterAvatar(player.character)" alt="avatar" class="h-20 rounded-full mr-4 cursor-pointer" />
+        <div class="flex-1 text-white text-center text-2xl">{{ player.name }}</div>
+        <input
+            type="text"
+            [value]="getTeamName(player.teamNumber)"
+            class="w-32 h-8 rounded bg-gray-700 text-white p-2 text-xl text-center"
+            readonly
+        />
+        <div class="ml-16">
+            <mat-checkbox [checked]="player.isReady">Ready</mat-checkbox>
+        </div>
+    </div>
+</div>

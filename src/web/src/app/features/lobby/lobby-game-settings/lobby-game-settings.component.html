@@ -1,0 +1,13 @@
+<div class="p-4">
+    <div class="flex items-center p-2 bg-gray-800 rounded-lg shadow-md mb-2">
+        <div class="flex-1 text-white pl-1 text-2xl">Game Code</div>
+        <input
+            type="text"
+            [value]="roomId"
+            class="h-12 w-40 rounded bg-gray-700 text-white p-2 text-xl text-center"
+            readonly
+        />
+        <mat-icon class="h-12 w-8 pl-2 cursor-pointer hover:text-gray-400" (click)="copyRoomId()"></mat-icon>
+    </div>
+    <!-- <app-map-selector></app-map-selector> -->
+</div>

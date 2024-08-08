@@ -1,0 +1,29 @@
+<!-- <div *ngIf="!gameState; else lobbyTemplate">
+    <app-lobby-base
+        [roomId]="roomId"
+        [connection]="connection"
+        [playerId]="persistentId"
+        [gameState]="gameState"
+        (onBack)="connection?.stop()"
+        [connectionError]="connectionError"
+    ></app-lobby-base>
+</div>
+<ng-template #lobbyTemplate>
+    <app-lobby-base
+        [roomId]="roomId"
+        [connection]="connection"
+        [playerId]="persistentId"
+        [gameState]="gameState"
+        (onBack)="connection?.stop()"
+        [connectionError]="connectionError"
+    ></app-lobby-base>
+</ng-template> -->
+
+<app-lobby-base
+    [roomId]="roomId"
+    [connection]="connection"
+    [playerId]="persistentId"
+    [gameState]="gameState"
+    (onBack)="connection?.stop()"
+    [connectionError]="connectionError"
+></app-lobby-base>
