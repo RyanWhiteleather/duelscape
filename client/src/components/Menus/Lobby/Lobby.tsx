@@ -9,6 +9,7 @@ import { HubConnection } from '@microsoft/signalr';
 import { GameState } from '../../../interfaces/game-state.interface.ts';
 import { useEffect, useState } from 'react';
 import { LobbyData } from '../../../interfaces/lobby-data.interface.ts';
+import { PlayerCard } from '../../Players/PlayerCard.tsx';
 
 /**
  * Lobby where players will:
@@ -65,7 +66,17 @@ export const Lobby = ({ roomId, connection, playerId, gameState, onBack, connect
 
                 <div className="h-[900px] min-h-[1em] w-1 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"></div>
 
-                <div className="flex-1 ps-5">{lobbyData && <LobbyPlayers players={lobbyData.gamePlayers} />}</div>
+                <div className="flex-1 ps-5">
+                    {lobbyData && (
+                        <div className="p-4">
+                            {lobbyData.gamePlayers
+                                .sort((a, b) => a.teamNumber - b.teamNumber)
+                                .map((player, index) => (
+                                    <PlayerCard key={index} player={player} />
+                                ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="absolute bottom-0 right-0 flex space-x-4 pb-4 pr-4 ">

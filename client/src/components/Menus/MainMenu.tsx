@@ -3,17 +3,29 @@ import { MenuButton } from '../Shared/MenuButton.tsx';
 import { Footer } from './Footer.tsx';
 import { useNavigate } from 'react-router-dom';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
- import { Room } from './Room.tsx';
+import { Room } from './Room.tsx';
+import { useState } from 'react';
+import { MainMenuPopup } from './MainMenuPopup.tsx';
 
 export const MainMenu = () => {
     const navigate = useNavigate();
+
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [isExistingGame, setIsExistingGame] = useState(false);
+    const [onPopupSubmit, setOnPopuSubmit] = useState(undefined);
 
     /**
      * TODO: Placeholder for Join Game Logic.
      *   This should show a screen where the player can enter in a game code to join a create game
      */
     const OnJoinGame = () => {
-        console.log('Join Game');
+        //Set the players name and joins them to a Room if available
+        setOnPopuSubmit(() => (name: string, roomId: string) => {
+            console.log(`Joining game with room ID: ${roomId} and name ${name}`);
+            navigate(`/${roomId}`);
+        });
+        setIsExistingGame(true);
+        setIsPopupVisible(true);
     };
 
     /**
@@ -22,9 +34,15 @@ export const MainMenu = () => {
      *
      * {@link Room}
      */
-    const OnCreateGame = () => {
-        const roomId = generateGameCode();
-        navigate(`/${roomId}`);
+    const OnCreateGame = async () => {
+        //Finish creating the game and navigate the player to the Room
+        setOnPopuSubmit(() => (name: string) => {
+            const roomId = generateGameCode();
+            console.log(`Creating game with room ID: ${roomId} and name ${name}`);
+            navigate(`/${roomId}`);
+        });
+        setIsExistingGame(false);
+        setIsPopupVisible(true);
     };
 
     /**
@@ -47,6 +65,14 @@ export const MainMenu = () => {
 
             <MenuButton onClick={() => OnViewCharacters()}>View Characters</MenuButton>
             <Footer />
+
+            {isPopupVisible && (
+                <MainMenuPopup
+                    isExistingGame={isExistingGame}
+                    onSubmit={onPopupSubmit}
+                    onClose={() => setIsPopupVisible(false)}
+                />
+            )}
         </div>
     );
 };
